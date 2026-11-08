@@ -7,11 +7,7 @@ Version **v0.2.7** — Chinese / English UI preview
 
 > **Early preview:** v0.2.7 has received initial hands-on Windows testing in both Chinese and English. Full compatibility and paired-deletion regression testing are not complete. Back up originals and test paired deletion on duplicates before processing important shoots.
 
-> ⚠️ **Security software compatibility warning (v0.2.7):** 360 Security has been observed automatically blocking LightCull's JPG rename/move operations. This may interrupt a batch operation, leave paired JPG/RAW files in inconsistent locations, or cause some JPGs to reappear in the source folder. Similar interference from other antivirus or ransomware-protection products is possible but has not been verified.
->
-> **Before use, check your security software's protection/blocking history.** Prefer narrowly scoped **allow/trust rules** for a verified LightCull extraction directory and the specific operations being blocked, then test on copied photos. Because v0.2.7 starts `powershell.exe` via `Start_LightCull.bat`, **trusting the folder alone may not resolve the block**. If precise exceptions are unavailable, you may temporarily exit the conflicting protection only after considering the risk, and **re-enable it immediately afterward**. Do not leave all antivirus protection disabled, or broadly allowlist `powershell.exe` or entire photo drives.
->
-> If an operation is blocked, the window closes unexpectedly, or a batch stops midway, **do not immediately retry**. Reconcile the source folder, Windows Recycle Bin, and each JPG/RAW pair first; a logged success is not proof that the file reached the Recycle Bin.
+> ⚠️ **Before using LightCull:** Antivirus software such as 360 Security may block LightCull, causing crashes or interrupted photo deletion. **Temporarily exit conflicting antivirus software before use, or add the trusted LightCull app/folder to its allowlist and permit the relevant operations.** Re-enable any protection you temporarily turned off afterward.
 
 ## Screenshots
 
@@ -47,7 +43,7 @@ This is a PowerShell + WPF project, **not an EXE installer**. The BAT launches `
 ## Deletion safeguards
 
 - **Back up important shoots and test on 5–10 copied JPG/RAW pairs first.**
-- **360 Security compatibility:** Check its document/image protection blocking history before use. Prefer narrowly scoped trust/allow rules; if protection must be temporarily disabled, re-enable it immediately after the controlled operation.
+- **Antivirus compatibility:** Before use, temporarily exit conflicting antivirus software (such as 360 Security), or allowlist the trusted LightCull app/folder and its relevant operations. Re-enable any temporarily disabled protection afterward.
 - JPG and RAW recycling is **not atomic**: a drive disconnecting midway can leave a partially recycled pair. Inspect the original folder and Recycle Bin after any failure.
 - Only matching RAW files in the current folder are handled. XMP sidecars are not deleted, and subfolders are not scanned.
 - If a USB HDD reports `0x8007045D` or similar device I/O errors, check the USB cable, power supply, and disk health before resuming deletion.
