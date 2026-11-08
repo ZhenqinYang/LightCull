@@ -7,6 +7,12 @@
 > **测试阶段 / Preview release:** v0.2.7 已在 Windows 上进行初步实机试用，中文及英文界面均可运行；尚未完成系统性兼容性与批量删除回归测试。请先备份原始照片，并在副本上验证 JPG/RAW 联动删除。  
 > v0.2.7 has received initial hands-on testing on Windows with both Chinese and English interfaces. Comprehensive compatibility and paired-deletion regression tests are still pending. Back up originals and test on copies first.
 
+> ⚠️ **安全软件兼容性警告（v0.2.7）：** 已确认 360 安全卫士曾自动阻止 LightCull 的 JPG 文件重命名/移动操作，导致批量操作中断、JPG 与配对 RAW 状态不一致，部分 JPG 可能在原目录重新出现。其他杀毒软件或防勒索保护也可能干预文件操作，但尚未逐一验证。
+>
+> **使用前请检查安全软件的防护/拦截记录。** 优先对来源可信的 LightCull 解压目录和对应文件操作设置**有针对性的允许/信任规则**，并先用照片副本测试。请注意：v0.2.7 通过 `Start_LightCull.bat` 启动 `powershell.exe`，**仅添加文件夹信任不一定足以解除拦截**。如确实无法配置允许规则，可在了解安全风险的前提下**临时退出冲突的安全防护，操作结束后立即重新开启**；不建议长期关闭杀毒软件，也不要将整个 `powershell.exe` 或照片磁盘加入全局白名单。
+>
+> 一旦发生拦截、窗口意外关闭或任务中断，**请勿直接重试批量删除**。先核对原照片文件夹、Windows 回收站和配对 JPG/RAW 的实际状态；日志中的成功记录不等同于文件已进入回收站。
+
 ## 界面截图 / Screenshots
 
 点击图片查看大图。Click a screenshot to view it in full size.
@@ -45,6 +51,7 @@ LightCull 是一款无需导入图库的 Windows 桌面选片工具，适合需�
 ### 安全注意
 
 - **先备份原始素材，并先用 5–10 对复制的 JPG/RAW 进行测试。**
+- **360 安全卫士兼容性：**运行前检查并处理其「文档/图片保护」拦截记录；优先使用最小范围的信任/允许规则。必要的临时关闭防护仅限受控操作，完成后立即重新开启。
 - JPG 与 RAW 进入回收站不是原子事务：存储设备中途断开可能导致仅部分文件成功操作。发生异常时请检查原文件夹及回收站。
 - 只会尝试匹配当前文件夹中的同名 RAW；不会删除 XMP 边车文件，也不会处理其他子文件夹。
 - 遇到移动机械硬盘的 `0x8007045D` 等 I/O 错误，应优先检查 USB 数据线、供电和硬盘健康状态，暂缓删除。
